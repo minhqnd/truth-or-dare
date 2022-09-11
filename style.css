@@ -1,0 +1,177 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap");
+
+body {
+    overflow: hidden;
+    /* font-family: sans-serif; */
+    /* background: black; */
+}
+
+.main {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* opacity: 0; */
+    transition: opacity 0.1s ease-in-out;
+    background-color: #111111;
+
+}
+
+.loaded.main {
+    /* opacity: 1; */
+}
+
+.cards {
+    flex-grow: 1;
+    padding-top: 0px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1;
+}
+
+.cards .card {
+    display: flex;
+    width: 80vw;
+    max-width: 400px;
+    height: 60vh;
+    background: white;
+    /* padding-bottom: 40px; */
+    border-radius: 15px;
+    overflow: hidden;
+    position: absolute;
+    /* will-change: transform; */
+    transition: all 0.3s ease-in-out;
+    cursor: -webkit-grab;
+    cursor: grab;
+    border: 15px solid rgb(255, 255, 255);
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    /* padding: 10 */
+}
+
+.cards .card .truth {
+    background-color: #00D4DE;
+    width: 100%;
+    height: 50%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    pointer-events: none;
+    /* border-radius: 30px; */
+    padding: 5%
+}
+
+.cards .card .dare {
+    background-color: #F80F68;
+    width: 100%;
+    height: 50%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    pointer-events: none;
+    /* border-radius: 30px; */
+    padding: 5%
+}
+
+.cards .card .title {
+    color: white;
+    font-size: 60px;
+    font-weight: 700;
+    font-family: "Roboto Mono", monospace;
+    text-shadow: rgb(30, 30, 30) 1px 0 5px;
+}
+
+.cards .card .cheo {
+    height: 5%;
+    width: 100%;
+    transform: rotate(-3deg);
+    pointer-events: none;
+    position: absolute;
+    top: 47%;
+}
+
+.cards .card .cheo .top {
+    height: 50%;
+    width: 100%;
+    background-color: #00D4DE;
+}
+
+.cards .card .cheo .bottom {
+    height: 50%;
+    width: 100%;
+    background-color: #F80F68;
+}
+
+.moving.card {
+    transition: none;
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+
+.cards .card .cauhoi {
+    color: white;
+    padding-top: 5%;
+    font-size: 24px;
+    font-family: "Roboto Mono", monospace;
+}
+
+/* .card img {
+    max-width: 100%;
+    pointer-events: none;
+}
+
+.card h3 {
+    margin-top: 32px;
+    font-size: 32px;
+    padding: 0 16px;
+    pointer-events: none;
+}
+
+.card p {
+    margin-top: 24px;
+    font-size: 20px;
+    padding: 0 16px;
+    pointer-events: none;
+} */
+
+.footer {
+    flex: 0 0 200px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.footer button {
+    border-radius: 50%;
+    line-height: 60px;
+    width: 60px;
+    border: 0;
+    background: #FFFFFF;
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.footer button:focus {
+    outline: 0;
+}
+
+.footer i {
+    font-size: 32px;
+    vertical-align: middle;
+}
+
+.play-field-header {
+    height: 10%;
+    background: rgb(33, 33, 33);
+    width: 100%;
+}
