@@ -15,26 +15,26 @@ body {
 }
 
 .main {
-    width: 100vw;
+    /* width: ; */
     height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    position: relative;
+    /* position: relative; */
     /* opacity: 0; */
     transition: opacity 0.1s ease-in-out;
     background-color: #111111;
 
 }
 
-.loaded.main {
+.main {
     /* opacity: 1; */
 }
 
 .cards {
     flex-grow: 1;
-    padding-top: 0px;
-    text-align: center;
+    /* padding-top: 0px; */
+    /* text-align: center; */
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -42,7 +42,7 @@ body {
 }
 
 .cards .card {
-    display: flex;
+    /* display: flex; */
     width: 80vw;
     max-width: 400px;
     height: 60vh;
@@ -70,7 +70,8 @@ body {
     border-top-right-radius: 15px;
     pointer-events: none;
     /* border-radius: 30px; */
-    padding: 5%
+    padding: 5%;
+    color: white
 }
 
 .cards .card .dare {
@@ -81,15 +82,21 @@ body {
     border-bottom-right-radius: 15px;
     pointer-events: none;
     /* border-radius: 30px; */
-    padding: 5%
+    padding: 5%;
+    color: white
 }
 
 .cards .card .title {
-    color: white;
     font-size: 60px;
     font-weight: 700;
     font-family: "Roboto Mono", monospace;
     text-shadow: rgb(30, 30, 30) 1px 0 5px;
+}
+
+.cards .card .cauhoi {
+    padding-top: 5%;
+    font-size: 24px;
+    font-family: "Roboto Mono", monospace;
 }
 
 .cards .card .cheo {
@@ -119,32 +126,6 @@ body {
     cursor: grabbing;
 }
 
-.cards .card .cauhoi {
-    color: white;
-    padding-top: 5%;
-    font-size: 24px;
-    font-family: "Roboto Mono", monospace;
-}
-
-/* .card img {
-    max-width: 100%;
-    pointer-events: none;
-}
-
-.card h3 {
-    margin-top: 32px;
-    font-size: 32px;
-    padding: 0 16px;
-    pointer-events: none;
-}
-
-.card p {
-    margin-top: 24px;
-    font-size: 20px;
-    padding: 0 16px;
-    pointer-events: none;
-} */
-
 .footer {
     flex: 0 0 200px;
     text-align: center;
@@ -173,5 +154,11 @@ body {
 .play-field-header {
     height: 10%;
     background: rgb(33, 33, 33);
+    width: 100%;
+}
+
+.header {
+    height: 10%;
+    background: rgb(178, 178, 178);
     width: 100%;
 }
