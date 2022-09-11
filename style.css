@@ -63,7 +63,7 @@ body {
 }
 
 .cards .card .truth {
-    background-color: #00D4DE;
+    background-color: #00B8A6;
     width: 100%;
     height: 50%;
     border-top-left-radius: 15px;
@@ -75,7 +75,7 @@ body {
 }
 
 .cards .card .dare {
-    background-color: #F80F68;
+    background-color: #F7405E;
     width: 100%;
     height: 50%;
     border-bottom-left-radius: 15px;
@@ -111,7 +111,7 @@ body {
 .cards .card .cheo .top {
     height: 50%;
     width: 100%;
-    background-color: #00D4DE;
+    background-color: #00B8A6;
 }
 
 .cards .card .cheo .bottom {
