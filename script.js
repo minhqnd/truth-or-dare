@@ -1,11 +1,9 @@
-
-
 var mainContainer = document.querySelector('.main');
 var allCards = document.querySelectorAll('.card');
 // var nope = document.getElementById('nope');
 // var love = document.getElementById('love');
 
-function initCards(card, index) {
+function showcard(card, index) {
     var newCards = document.querySelectorAll('.card:not(.removed)');
 
     newCards.forEach(function(card, index) {
@@ -18,12 +16,12 @@ function initCards(card, index) {
 }
 
 
-initCards();
+showcard();
 
-update()
+updatehammer(document.querySelectorAll('.card'))
 
-function update() {
-    allCards.forEach(function(el) {
+function updatehammer(newcard) {
+    newcard.forEach(function(el) {
         var hammertime = new Hammer(el);
     
         hammertime.on('pan', function(event) {
@@ -68,7 +66,7 @@ function update() {
                 var rotate = xMulti * yMulti;
     
                 event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
-                initCards();
+                showcard();
             }
         });
     });
@@ -91,7 +89,7 @@ function createButtonListener(love) {
             card.style.transform = 'translate(-' + moveOutWidth + 'px, -80px) rotate(20deg)';
         }
 
-        initCards();
+        showcard();
 
         event.preventDefault();
     };
@@ -111,8 +109,6 @@ function getRandomColor() {
     }
     return color;
   }
-
-
 
 var cardtemp = `<div class="card">
 <div class="truth">   
@@ -135,6 +131,6 @@ function addcard(truth, dare) {
     var div = div.replaceAll('%DARE%', dare);
     console.log(div)
     $('.cards').append(div);
-    update()
-    initCards();
+    updatehammer(document.querySelectorAll('.card'))
+    showcard();
 }
