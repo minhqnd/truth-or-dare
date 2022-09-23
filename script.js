@@ -6,10 +6,10 @@ var allCards = document.querySelectorAll('.card');
 function showcard(card, index) {
     var newCards = document.querySelectorAll('.card:not(.removed)');
 
-    newCards.forEach(function(card, index) {
+    newCards.forEach(function (card, index) {
         card.style.zIndex = allCards.length - index;
         card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
-        card.style.opacity = (10 - index) / 10; 
+        card.style.opacity = (10 - index) / 10;
     });
 
     mainContainer.classList.add('loaded');
@@ -21,39 +21,39 @@ showcard();
 updatehammer(document.querySelectorAll('.card'))
 
 function updatehammer(newcard) {
-    newcard.forEach(function(el) {
+    newcard.forEach(function (el) {
         var hammertime = new Hammer(el);
-    
-        hammertime.on('pan', function(event) {
+
+        hammertime.on('pan', function (event) {
             el.classList.add('moving');
         });
-    
-        hammertime.on('pan', function(event) {
+
+        hammertime.on('pan', function (event) {
             if (event.deltaX === 0) return;
             if (event.center.x === 0 && event.center.y === 0) return;
-    
+
             // mainContainer.classList.toggle('main_love', event.deltaX > 0);
             // mainContainer.classList.toggle('main_nope', event.deltaX < 0);
-    
+
             var xMulti = event.deltaX * 0.03;
             var yMulti = event.deltaY / 80;
             var rotate = xMulti * yMulti;
-    
+
             event.target.style.transform = 'translate(' + event.deltaX + 'px, ' + event.deltaY + 'px) rotate(' + rotate + 'deg)';
         });
-    
-        hammertime.on('panend', function(event) {
+
+        hammertime.on('panend', function (event) {
             el.classList.remove('moving');
             // console.log(el)
             el.setAttribute('data-answer', event.deltaX > 0)
             // mainContainer.classList.remove('main_love');
             // mainContainer.classList.remove('main_nope');
-    
+
             var moveOutWidth = document.body.clientWidth;
             var keep = Math.abs(event.deltaX) < 40 || Math.abs(event.velocityX) < 0.5;
-    
+
             event.target.classList.toggle('removed', !keep);
-    
+
             if (keep) {
                 event.target.style.transform = '';
             } else {
@@ -64,7 +64,7 @@ function updatehammer(newcard) {
                 var xMulti = event.deltaX * 0.03;
                 var yMulti = event.deltaY / 40;
                 var rotate = xMulti * yMulti;
-    
+
                 event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
                 showcard();
             }
@@ -73,7 +73,7 @@ function updatehammer(newcard) {
 }
 
 function createButtonListener(love) {
-    return function(event) {
+    return function (event) {
         var cards = document.querySelectorAll('.card:not(.removed)');
         var moveOutWidth = document.body.clientWidth * 1.5;
 
@@ -101,14 +101,6 @@ var loveListener = createButtonListener(true);
 // nope.addEventListener('click', nopeListener);
 // love.addEventListener('click', loveListener);
 
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
 
 var cardtemp = `<div class="card">
 <div class="truth">   
@@ -125,12 +117,17 @@ var cardtemp = `<div class="card">
 </div>
 </div>`
 
-function addcard(truth, dare) {
+function addcard(data) {
     var div = cardtemp;
-    var div = div.replaceAll('%TRUTH%', truth);
-    var div = div.replaceAll('%DARE%', dare);
-    console.log(div)
+    var div = div.replaceAll('%TRUTH%', data.truth);
+    var div = div.replaceAll('%DARE%', data.dare);
     $('.cards').append(div);
     updatehammer(document.querySelectorAll('.card'))
     showcard();
 }
+
+firebase.database().ref("Cards").once("value", function (snapshot) {
+    var listcards = Object.values(JSON.parse(JSON.stringify(snapshot.val(), null, 3)));
+    console.log(listcards)
+    listcards.forEach(addcard);
+})
