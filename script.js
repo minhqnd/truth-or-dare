@@ -5,7 +5,6 @@ var allCards = document.querySelectorAll('.card');
 
 function showcard(card, index) {
     var newCards = document.querySelectorAll('.card:not(.removed)');
-
     newCards.forEach(function (card, index) {
         card.style.zIndex = allCards.length - index;
         card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
@@ -53,9 +52,9 @@ function updatehammer(newcard) {
             var keep = Math.abs(event.deltaX) < 40 || Math.abs(event.velocityX) < 0.5;
 
             event.target.classList.toggle('removed', !keep);
-
             if (keep) {
                 event.target.style.transform = '';
+                
             } else {
                 var endX = Math.max(Math.abs(event.velocityX) * moveOutWidth, moveOutWidth);
                 var toX = event.deltaX > 0 ? endX : -endX;
@@ -64,16 +63,21 @@ function updatehammer(newcard) {
                 var xMulti = event.deltaX * 0.03;
                 var yMulti = event.deltaY / 40;
                 var rotate = xMulti * yMulti;
-
+                // ?nên cho remove hay không thì đéo biết nhé
+                event.target.remove()
                 event.target.style.transform = 'translate(' + toX + 'px, ' + (toY + event.deltaY) + 'px) rotate(' + rotate + 'deg)';
                 showcard();
+
+                // TODO send lệnh load thêm, nêu như dưới 5 card có class remove thì load thêm, không thì thôi, còn dưới 5 cái để load thì skip
             }
         });
     });
 }
 
+
 function createButtonListener(love) {
     return function (event) {
+        console.log('skip')
         var cards = document.querySelectorAll('.card:not(.removed)');
         var moveOutWidth = document.body.clientWidth * 1.5;
 
@@ -98,7 +102,7 @@ function createButtonListener(love) {
 var nopeListener = createButtonListener(false);
 var loveListener = createButtonListener(true);
 
-// nope.addEventListener('click', nopeListener);
+nope.addEventListener('click', nopeListener);
 // love.addEventListener('click', loveListener);
 
 
