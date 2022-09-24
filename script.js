@@ -1,4 +1,4 @@
-
+console.log('start')
 
 firebase.database().ref("Cards").once("value", function (snapshot) {
     var mainContainer = document.querySelector('.main');
@@ -9,7 +9,7 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
     var listcards = Object.values(JSON.parse(JSON.stringify(snapshot.val(), null, 3)));
     // console.log(listcards)
     // listcards.forEach(addcard);
-    
+
     function showcard(card, index) {
         var newCards = document.querySelectorAll('.card:not(.removed)');
         newCards.forEach(function (card, index) {
@@ -21,6 +21,15 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
         mainContainer.classList.add('loaded');
     }
 
+    function start() {
+        if ($('.card').length <= 5) {
+            var element = (Math.floor(Math.random() * listcards.length))
+            console.log(listcards[element])
+            // addcard(listcards[element])
+        }
+    }
+
+    start()
 
     showcard();
 
@@ -84,16 +93,12 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
     }
 
     function loadonemorecard() {
+        console.log('cc');
         if ($('.card').length <= 5) {
-            var element = (Math.floor(Math.random()*listcards.length))
-            addcard(listcards[element]) 
+            var element = (Math.floor(Math.random() * listcards.length))
+            addcard(listcards[element])
         }
     }
-    
-    
-
-
-
 
     function createButtonListener(love) {
         return function (event) {
@@ -149,7 +154,4 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
         updatehammer(document.querySelectorAll('.card'))
         showcard();
     }
-
-
-
 })
