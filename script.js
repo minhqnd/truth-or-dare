@@ -155,4 +155,3 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
         showcard();
     }
 })
-
