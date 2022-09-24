@@ -156,6 +156,3 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
     }
 })
 
-//just a test
-
-//just another test too
