@@ -148,7 +148,7 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
         showcard();
     }
 })
-//test git
+
 //!  cái này phải để ở globe không bị lỗi addcard
 var cardtemp = `<div class="card">
 <div class="truth">   
