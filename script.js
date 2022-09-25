@@ -22,9 +22,11 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
     }
 
     function loadmorecard() {
+        console.log('call');
         if (listcards.length) {
             //* check xem con cards de load khong
             if ($('.card').length < 5) {
+                console.log('loaded');
                 //* neu so card be hon 5, load them
                 var element = (Math.floor(Math.random() * listcards.length))
                 console.log(listcards[element])
@@ -112,6 +114,7 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
     function createButtonListener(love) {
         return function (event) {
             console.log('skip')
+            loadmorecard()
             var cards = document.querySelectorAll('.card:not(.removed)');
             var moveOutWidth = document.body.clientWidth * 1.5;
 
@@ -122,7 +125,7 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
             card.classList.add('removed');
 
             if (love) {
-                card.style.transform = 'translate(' + moveOutWidth + 'px, -80px) rotate(-20deg)';
+                card.style.transform = 'translate(' + moveOutWidth + 'px, -80px) rotate(-20deg)';       
             } else {
                 card.style.transform = 'translate(-' + moveOutWidth + 'px, -80px) rotate(20deg)';
             }
