@@ -1,0 +1,69 @@
+/* 此样式可能仅适用本demo，仅供参考，可根据具体设计稿或喜好自定义 */
+html,body{ height: 100%; }
+
+body { background: #20262E;overflow: hidden; }
+#app{
+  overflow-x:hidden;
+}
+
+/* 直接script引用建议增加，不然会引发闪烁，单文件组件不需要 */
+[v-cloak] { display: none; }
+
+/* 注意！组件的宽高必须设置，不然出不来！！！ */
+#app .vue-tinder {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 23px;
+  margin: auto;
+  width: calc(100% - 20px);
+  height: calc(100% - 23px - 18%);
+  min-width: 300px;
+  max-width: 355px;
+}
+
+/* 卡片内的3种状态指示器位置，透明度会由组件自动调整 */
+.nope-pointer { right: 10px; }
+.like-pointer { left: 10px; }
+.nope-pointer,
+.like-pointer {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  width: 64px;
+  height: 64px;
+}
+.super-pointer {
+  position: absolute;
+  z-index: 1;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 112px;
+  height: 78px;
+}
+
+/* slot内图片样式 */
+.pic {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+/* 按钮样式 */
+.btns {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 300px;
+  max-width: 355px;
+}
+.btns img{ width: 80px; }
