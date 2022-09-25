@@ -21,15 +21,22 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
         mainContainer.classList.add('loaded');
     }
 
-    function start() {
-        if ($('.card').length <= 5) {
-            var element = (Math.floor(Math.random() * listcards.length))
-            console.log(listcards[element])
-            // addcard(listcards[element])
+    function loadmorecard() {
+        if (listcards.length) {
+            //* check xem con cards de load khong
+            if ($('.card').length < 5) {
+                //* neu so card be hon 5, load them
+                var element = (Math.floor(Math.random() * listcards.length))
+                console.log(listcards[element])
+                addcard(listcards[element])
+                listcards.pop(element)
+                //* loop
+                loadmorecard()
+            }
         }
     }
 
-    start()
+    loadmorecard()
 
     showcard();
 
@@ -86,19 +93,21 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
 
                     // TODO send lệnh load thêm, nêu như dưới 5 card có class remove thì load thêm, không thì thôi, còn dưới 5 cái để load thì skip
 
-                    loadonemorecard()
+                    loadmorecard()
                 }
             });
         });
     }
 
-    function loadonemorecard() {
-        console.log('cc');
-        if ($('.card').length <= 5) {
-            var element = (Math.floor(Math.random() * listcards.length))
-            addcard(listcards[element])
-        }
-    }
+    //* load once card
+
+    // function loadmorecard() {
+    //     console.log('cc');
+    //     if ($('.card').length <= 5) {
+    //         var element = (Math.floor(Math.random() * listcards.length))
+    //         addcard(listcards[element])
+    //     }
+    // }
 
     function createButtonListener(love) {
         return function (event) {
@@ -130,8 +139,18 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
     nope.addEventListener('click', nopeListener);
     // love.addEventListener('click', loveListener);
 
+    function addcard(data) {
+        var div = cardtemp
+        var div = div.replaceAll('%TRUTH%', data.truth);
+        var div = div.replaceAll('%DARE%', data.dare);
+        $('.cards').append(div);
+        updatehammer(document.querySelectorAll('.card'))
+        showcard();
+    }
+})
 
-    var cardtemp = `<div class="card">
+//!  cái này phải để ở globe không bị lỗi addcard
+var cardtemp = `<div class="card">
 <div class="truth">   
     <div class="title">THẬT:</div>
     <div class="cauhoi">%TRUTH%</div>
@@ -145,13 +164,3 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
     <div class="cauhoi">%DARE%</div>
 </div>
 </div>`
-
-    function addcard(data) {
-        var div = cardtemp;
-        var div = div.replaceAll('%TRUTH%', data.truth);
-        var div = div.replaceAll('%DARE%', data.dare);
-        $('.cards').append(div);
-        updatehammer(document.querySelectorAll('.card'))
-        showcard();
-    }
-})
