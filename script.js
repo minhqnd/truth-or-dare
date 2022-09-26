@@ -167,3 +167,5 @@ var cardtemp = `<div class="card">
     <div class="cauhoi">%DARE%</div>
 </div>
 </div>`
+
+//just a demo commit
