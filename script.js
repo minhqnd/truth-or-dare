@@ -125,7 +125,7 @@ firebase.database().ref("Cards").once("value", function (snapshot) {
             card.classList.add('removed');
 
             if (love) {
-                card.style.transform = 'translate(' + moveOutWidth + 'px, -80px) rotate(-20deg)';       
+                card.style.transform = 'translate(' + moveOutWidth + 'px, -80px) rotate(-20deg)';
             } else {
                 card.style.transform = 'translate(-' + moveOutWidth + 'px, -80px) rotate(20deg)';
             }

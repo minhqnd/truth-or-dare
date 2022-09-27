@@ -35,11 +35,11 @@ new Vue({
      */
     submit (choice) {
       switch (choice) {
-        case 'nope': // 左滑
+        case 'nope':
           break;
-        case 'like': // 右滑
+        case 'like':
           break;
-        case 'super': // 上滑
+        case 'super':
           break;
       }
       if (this.queue.length < 2) {
